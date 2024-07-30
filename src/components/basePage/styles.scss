@@ -1,0 +1,15 @@
+#basePage {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  .baseContent {
+    border: 1px solid #000;
+    display: flex;
+    flex: 1;
+    .content {
+      display: flex;
+      flex: 1;
+    }
+  }
+}

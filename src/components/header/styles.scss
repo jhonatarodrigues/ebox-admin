@@ -1,0 +1,17 @@
+@import "../../constants/colors.scss";
+
+.header {
+  background-color: $BLUE;
+  padding: 0.625rem 1.25rem;
+
+  justify-content: flex-end;
+  display: flex;
+  .nameUser {
+    color: $WHITE;
+    font-size: 0.9375rem;
+    margin-right: 1.25rem;
+    .name {
+      font-weight: 700;
+    }
+  }
+}

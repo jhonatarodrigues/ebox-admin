@@ -1,0 +1,32 @@
+@import "../../constants/colors.scss";
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $BLUE;
+  .box {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0.625rem;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    div {
+      width: 100%;
+      margin-bottom: 0.9375rem;
+    }
+    input {
+      width: 100%;
+    }
+    img {
+      margin-bottom: 1.875rem;
+    }
+    button {
+      margin-top: 0.9375rem;
+    }
+  }
+}
