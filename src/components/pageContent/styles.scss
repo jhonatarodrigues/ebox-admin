@@ -1,0 +1,14 @@
+#PageContent {
+  width: 100%;
+  .pageHeader {
+    background: #efefef;
+    width: 100%;
+    padding: 0.625rem 1.25rem;
+    p {
+      font-size: 0.9375rem;
+    }
+  }
+  .container {
+    padding: 2.5rem 1.25rem;
+  }
+}

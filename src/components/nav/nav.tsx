@@ -5,9 +5,8 @@ export const Nav = () => {
         <div id='nav'>
           <div className="navContent">
             <div className="content">
-              <div className="navItem">Home</div>
-              <div className="navItem">Products</div>
-              <div className="navItem">Contact</div>
+              <div className="navItem">Produtos</div>
+              <div className="navItem">Usuários</div>
             </div>
           </div>
         </div>

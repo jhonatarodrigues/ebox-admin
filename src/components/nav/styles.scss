@@ -6,4 +6,9 @@
   flex: 1;
   max-width: 12.5rem;
   display: flex;
+  .content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
 }
