@@ -17,7 +17,6 @@
     text-align: center;
     div {
       width: 100%;
-      margin-bottom: 0.9375rem;
     }
     input {
       width: 100%;
@@ -27,6 +26,12 @@
     }
     button {
       margin-top: 0.9375rem;
+    }
+    .rowField {
+      margin-bottom: 0.625rem;
+      div {
+        margin-bottom: 0;
+      }
     }
   }
 }
