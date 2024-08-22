@@ -1,13 +1,9 @@
 import { BasePage } from '@/components/basePage/basePage';
-import './styles.scss';
+import './users.styles.scss';
 import { PageContent } from '@/components/pageContent/pageContent';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useProducts } from '@/hooks/business/useProducts';
-import { useEffect } from 'react';
 
-export const Products = () => {
-  // const products = use()
-  
+export const Users = () => {
 
   const columns: GridColDef<(typeof rows)[number]>[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -51,28 +47,25 @@ export const Products = () => {
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
-
-
- 
   
-  return (
-    <BasePage>
-      <PageContent >
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
+    return (
+      <BasePage>
+        <PageContent >
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
-      </PageContent>
-    </BasePage>
-  )
+            }}
+            pageSizeOptions={[5]}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        </PageContent>
+      </BasePage>
+    )
 }

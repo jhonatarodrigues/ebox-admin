@@ -1,5 +1,8 @@
 import { useAuthStore } from "@/hooks/store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { AuthRepository } from "@/repositories/auth";
+import { ToastService } from "@/services/ToastService";
+import { decodeToken } from "react-jwt";
 
 type LoginProps = {
   user: string;
@@ -13,24 +16,38 @@ interface UseAuthProps {
 
 export const useAuth = (): UseAuthProps => {
   const Navigate = useNavigate();
+
   const { setUser, clearUser } = useAuthStore((state) => state);
 
   const login = async ({ user, password }: LoginProps) => {
     console.log(user, password);
-    // setUser(data);
 
-    setUser({
-      name: "John Doe",
-      email: "asdasdsa@asdas.com",
-    });
+    try {
+      const response = await AuthRepository.login({ user, password });
 
-    Navigate("/products", { replace: true });
+      if (response.token) {
+        let user = decodeToken(response.token);
+
+        if (!user) {
+          throw new Error("Error on login");
+        }
+
+        setUser(user);
+
+        Navigate("/products", { replace: true });
+
+        return;
+      }
+
+      throw new Error("Invalid user or password");
+    } catch (error) {
+      ToastService.error("Invalid user or password");
+    }
   };
 
   const logout = () => {
     clearUser();
-    // setUser(null);
-    // navigate("/", { replace: true });
+    Navigate("/", { replace: true });
   };
 
   return {
