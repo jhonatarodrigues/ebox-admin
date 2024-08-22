@@ -4,7 +4,7 @@ export const ProductsRepository = {
   getProducts: async () => {
     const instance = getInstance();
 
-    const response = await instance.post("/products");
+    const response = await instance.get("/product");
 
     return response.data;
   },

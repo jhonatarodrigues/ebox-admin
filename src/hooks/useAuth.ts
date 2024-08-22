@@ -20,8 +20,6 @@ export const useAuth = (): UseAuthProps => {
   const { setUser, clearUser } = useAuthStore((state) => state);
 
   const login = async ({ user, password }: LoginProps) => {
-    console.log(user, password);
-
     try {
       const response = await AuthRepository.login({ user, password });
 

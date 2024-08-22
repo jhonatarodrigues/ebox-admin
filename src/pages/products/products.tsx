@@ -3,55 +3,37 @@ import './styles.scss';
 import { PageContent } from '@/components/pageContent/pageContent';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useProducts } from '@/hooks/business/useProducts';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ProductsModel } from '@/model/products';
 
 export const Products = () => {
-  // const products = use()
+  const { getProducts } = useProducts();
+
+  const [products, setProducts] = useState<ProductsModel[]>([]);
   
 
-  const columns: GridColDef<(typeof rows)[number]>[] = [
-    { field: 'id', headerName: 'ID', width: 90 },
+  const columns: GridColDef<(typeof products)[number]>[] = [
+    { field: 'id', headerName: 'ID', width: 90, },
     {
-      field: 'firstName',
-      headerName: 'First name',
-      width: 150,
-      editable: true,
+      field: 'title',
+      headerName: 'Titulo',
+      width: 200,
     },
     {
-      field: 'lastName',
-      headerName: 'Last name',
-      width: 150,
-      editable: true,
+      field: 'description',
+      headerName: 'Descrição',
+      width: 300,
     },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 110,
-      editable: true,
-    },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (value: any, row: any) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
+    
   ];
 
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  ];
+  
 
+  useEffect(() => {
+    getProducts().then((response) => {
+      setProducts(response);
+    });
+  }, []);
 
  
   
@@ -59,7 +41,7 @@ export const Products = () => {
     <BasePage>
       <PageContent >
         <DataGrid
-          rows={rows}
+          rows={products}
           columns={columns}
           initialState={{
             pagination: {

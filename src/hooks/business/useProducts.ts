@@ -1,5 +1,6 @@
 import { ProductsModel } from "@/model/products";
 import { ProductsRepository } from "@/repositories/products";
+import { ToastService } from "@/services/ToastService";
 
 interface UseProductsProps {
   getProducts: () => Promise<ProductsModel[]>;
@@ -7,7 +8,13 @@ interface UseProductsProps {
 
 export const useProducts = (): UseProductsProps => {
   const getProducts = async () => {
-    return ProductsRepository.getProducts();
+    try {
+      const response = await ProductsRepository.getProducts();
+
+      return response;
+    } catch (error) {
+      ToastService.error("Erro ao buscar os produtos");
+    }
   };
 
   return {
