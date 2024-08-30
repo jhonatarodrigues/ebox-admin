@@ -50,7 +50,7 @@ export const Users = () => {
   
     return (
       <BasePage>
-        <PageContent >
+        <PageContent title='users'>
           <DataGrid
             rows={rows}
             columns={columns}

@@ -3,4 +3,5 @@ export type UserModel = {
   email: string;
   name: string;
   status: number;
+  token: string;
 };

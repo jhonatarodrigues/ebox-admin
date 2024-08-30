@@ -4,11 +4,15 @@ import { PageContent } from '@/components/pageContent/pageContent';
 import Box from '@mui/material/Box';
 import { Button,    TextField } from '@mui/material';
 import { useForm, SubmitHandler } from "react-hook-form"
+import { useProducts } from '@/hooks/business/useProducts';
+import { createProducts } from '@/repositories/products';
+import { ToastService } from '@/services/ToastService';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   name:string;
   quantity:string;
-  image:string;
+  file: File;
   composition:string;
 }
 
@@ -18,11 +22,35 @@ export const AddProducts = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const Navigate = useNavigate()
+  const { createProducts } = useProducts()
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+
+    try {
+      const newData: createProducts = {
+        name: data.name,
+        quantity: data.quantity,
+        file: data.file,
+        description: data.composition
+      }
+
+      const response  = await createProducts(newData);
+      if(response.id) {
+        ToastService.success('Produto criado com sucesso!');
+        Navigate('/products')
+        return;
+      }
+
+      ToastService.error('houve um erro ao criar o produto');
+    } catch (error) {
+      ToastService.error('houve um erro ao criar o produto');
+    }
+  }
 
     return (
       <BasePage>
-        <PageContent >
+        <PageContent title='Add Products' >
           <Box
             component="form"
             noValidate
@@ -50,7 +78,7 @@ export const AddProducts = () => {
                 id="outlined-required"
                 label="Photo of product"
                 type='file'
-                {...register("image", { required: true })}
+                {...register("file", { required: true })}
               />
             </div>
             <div className='rowField'>

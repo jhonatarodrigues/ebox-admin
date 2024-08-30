@@ -2,10 +2,15 @@
   width: 100%;
   .pageHeader {
     background: #efefef;
-    width: 100%;
     padding: 0.625rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     p {
-      font-size: 0.9375rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgb(101, 101, 101);
+      text-transform: uppercase;
     }
   }
   .container {

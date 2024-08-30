@@ -30,7 +30,7 @@ export const useAuth = (): UseAuthProps => {
           throw new Error("Error on login");
         }
 
-        setUser(user);
+        setUser({ user, token: response.token });
 
         Navigate("/products", { replace: true });
 

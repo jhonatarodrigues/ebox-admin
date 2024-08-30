@@ -5,8 +5,10 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useProducts } from '@/hooks/business/useProducts';
 import { useEffect, useState } from 'react';
 import { ProductsModel } from '@/model/products';
+import { useNavigate } from 'react-router-dom';
 
 export const Products = () => {
+  const navigate = useNavigate();
   const { getProducts } = useProducts();
 
   const [products, setProducts] = useState<ProductsModel[]>([]);
@@ -39,7 +41,7 @@ export const Products = () => {
   
   return (
     <BasePage>
-      <PageContent >
+      <PageContent title="products" addLabel='Add Products' onPressAddButton={() => navigate("/products/add", ) } >
         <DataGrid
           rows={products}
           columns={columns}
