@@ -1787,6 +1787,13 @@
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.16.6.tgz#f029e12ffda8eb79838cc85897f03a628010037c"
   integrity sha512-kytg6LheUG42V8H/o/Ptz3olSO5kUXW9zF0ox18VnblX6bO2yif1FPItgc3ey1t5ansb1+gbe7SatntqusQupg==
 
+"@mui/icons-material@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-6.0.2.tgz#fc0fba40421eb6d44f1266b53f9d5e51b67df42b"
+  integrity sha512-WaTPSvKcx8X7NdWAHzJWDZv+YXvK0MUY8+JI/r4/q2GgIa5RW+n4+08CGX6jB7sWhU1R3zy28NfsDUwwQjOThw==
+  dependencies:
+    "@babel/runtime" "^7.25.0"
+
 "@mui/material@^5.16.6":
   version "5.16.6"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.16.6.tgz#c7d695f4a9a473052dc086e64471d0435b7e4a52"
@@ -9409,6 +9416,11 @@ svgo@^2.7.0:
     csso "^4.2.0"
     picocolors "^1.0.0"
     stable "^0.1.8"
+
+sweetalert2@^11.13.1:
+  version "11.13.1"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.13.1.tgz#d8cd329171fd98b9647b4b525ac8fd703b0a7805"
+  integrity sha512-YO6StPWC+6WmXJbPDHIiOhi5ZNU9Lb2XnWo3odKGwbFOtfCOBqzExNcLK85HS2GzIMjpl8Wl6CLiMQdhRXHN0g==
 
 symbol-tree@^3.2.4:
   version "3.2.4"
