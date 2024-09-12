@@ -1,58 +1,90 @@
 import { BasePage } from '@/components/basePage/basePage';
 import './users.styles.scss';
 import { PageContent } from '@/components/pageContent/pageContent';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItem, GridColDef, GridDeleteIcon } from '@mui/x-data-grid';
+import { useUser } from '@/hooks/business/useUser';
+import { useEffect, useState } from 'react';
+import { UserModel } from '@/model/user';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export const Users = () => {
+  const navigate = useNavigate();
+  const {getUsers, deleteUser} = useUser();
+  const [users, setUsers] = useState<UserModel[]>([]);
 
-  const columns: GridColDef<(typeof rows)[number]>[] = [
+  const handleOpenModalDelete = ({id, name} : {id: string, name: string}) => {    
+    Swal.fire({
+      title: `Você quer mesmo deletar ${name} ?`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Sim",
+      denyButtonText: `Não`,
+    }).then((result) => {
+      Swal.isLoading();
+      if (result.isConfirmed) {
+        deleteUser(Number(id)).then(() => {
+          Swal.fire('Deletado com sucesso!', '', 'success').then(() => {
+            getUsers().then((response) => {
+              setUsers(response);
+            });
+          });
+        }).catch(() => {
+          Swal.fire('Erro ao deletar, tente novamente mais tarde', '', 'error');
+        });
+      } 
+    });
+    
+  }
+
+  const columns: GridColDef<(typeof users)[number]>[] = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
-      field: 'firstName',
-      headerName: 'First name',
-      width: 150,
+      field: 'email',
+      headerName: 'email',
+      flex: 1,
       editable: true,
     },
     {
-      field: 'lastName',
-      headerName: 'Last name',
-      width: 150,
+      field: 'name',
+      headerName: 'name',
+      flex: 1,
       editable: true,
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 110,
-      editable: true,
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Actions',
+      width: 120,
+      cellClassName: 'actions',
+      getActions: ({row}) => {
+        
+        return [
+          
+          <GridActionsCellItem
+            icon={<GridDeleteIcon />}
+            label="Delete"
+            onClick={() => handleOpenModalDelete({id: String(row.id), name: row.name})}
+            color="inherit"
+          />,
+        ];
+      },
     },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (value: any, row: any) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
+    
+    
   ];
 
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  ];
+  useEffect(() => {
+    getUsers().then((response) => {
+      setUsers(response);
+    });
+  }, []);
   
     return (
       <BasePage>
-        <PageContent title='users'>
+        <PageContent title='users' addLabel='Add User' onPressAddButton={() => navigate("/users/add", ) }>
           <DataGrid
-            rows={rows}
+            rows={users}
             columns={columns}
             initialState={{
               pagination: {

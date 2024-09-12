@@ -6,9 +6,30 @@
   flex: 1;
   max-width: 12.5rem;
   display: flex;
-  .content {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+  .navContent {
+    width: 100%;
+    .content {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      width: 100%;
+      button {
+        width: 100%;
+        background: none;
+        text-decoration: none;
+        border: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #ffffff1b;
+        cursor: pointer;
+        &:hover {
+          background-color: #ffffff1b;
+        }
+        .navItem {
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+      }
+    }
   }
 }

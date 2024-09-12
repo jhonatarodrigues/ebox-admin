@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import useAuthStore from '@/hooks/store/useAuthStore';
 
@@ -9,6 +9,7 @@ import Login from '@/pages/login/login';
 import { Products } from '@/pages/products/products';
 import { AddProducts } from '@/pages/addProducts/addProducts';
 import { Users } from '@/pages/users/users';
+import { AddUser } from '@/pages/addUser/addUser';
 
 
 const authRoutes = () => (
@@ -16,8 +17,8 @@ const authRoutes = () => (
     <Route path='/products' Component={Products} />
     <Route path='/products/add' Component={AddProducts} />
 
-    <Route path='/Users' Component={Users} />
-    <Route path='/users/add' Component={AddProducts} />
+    <Route path='/users' Component={Users} />
+    <Route path='/users/add' Component={AddUser} />
   </>
 );
 
@@ -29,6 +30,8 @@ function Navigation() {
       <Routes>
         <Route path='/' Component={Login} />
         { user && authRoutes() }
+
+        <Route path='*' element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

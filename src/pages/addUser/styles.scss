@@ -1,0 +1,31 @@
+.rowField {
+  width: 100%;
+  display: flex;
+  div {
+    width: 100%;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+  .contentImage {
+    width: 300px;
+    height: 120px;
+    border: 1px solid;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100%;
+    button {
+      width: 2rem;
+      height: 2rem;
+      background-color: #f00;
+      color: white;
+      font-size: 20px;
+      border: none;
+      border-radius: 100%;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(149, 0, 0);
+      }
+    }
+  }
+}
