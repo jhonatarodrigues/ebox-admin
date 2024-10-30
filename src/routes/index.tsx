@@ -10,10 +10,13 @@ import { Products } from '@/pages/products/products';
 import { AddProducts } from '@/pages/addProducts/addProducts';
 import { Users } from '@/pages/users/users';
 import { AddUser } from '@/pages/addUser/addUser';
+import { QRCodeGenerate } from '@/pages/qrcodeGernerate/qrcodeGernerate';
 
 
 const authRoutes = () => (
   <>
+    <Route path='/qrcode' Component={QRCodeGenerate} />
+
     <Route path='/products' Component={Products} />
     <Route path='/products/add' Component={AddProducts} />
 

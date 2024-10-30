@@ -7,6 +7,9 @@ export const Nav = () => {
         <div id='nav'>
           <div className="navContent">
             <div className="content">
+              <button onClick={() => Navigate('/qrcode')} >
+                <div className="navItem">Generate QRCode</div>
+              </button>
               <button onClick={() => Navigate('/products')} >
                 <div className="navItem">Produtos</div>
               </button>

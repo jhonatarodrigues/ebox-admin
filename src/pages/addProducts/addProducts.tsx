@@ -31,7 +31,6 @@ export const AddProducts = () => {
   const [product, setProduct] = useState<ProductsModel>()
   const { createProducts, getProduct, updateProducts } = useProducts()
 
-  console.log('state ---',state, product)
 
   useEffect(() => {
     if(state?.id) {
@@ -57,8 +56,6 @@ export const AddProducts = () => {
       }
 
       if (product?.id) {
-
-        console.log('update', newData)
 
         const response  = await updateProducts({...newData, id: product.id});
         if(response.id) {
