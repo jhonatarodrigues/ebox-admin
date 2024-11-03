@@ -28,13 +28,12 @@ export const QRCodeGenerate = () => {
   const [csvData, setCsvData] = useState<string[][]>([]);
 
   const generateCSVFile = (qrcode: QRCodeModel[]) => {
-    const product = products.filter((product) => product.id === qrcode[0].product_id).pop();
 
     const data = [
-      ["code", "product"],
+      ["code"],
     ];
     qrcode.map((qrcode) => {
-      data.push([qrcode.code, product?.title ?? '']);
+      data.push([qrcode.code]);
     });
     setCsvData(data);
   
