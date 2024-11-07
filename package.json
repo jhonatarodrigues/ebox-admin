@@ -2,6 +2,7 @@
   "name": "eboxlabsadmin",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://eboxlabs.com/admin/",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.13.0",
