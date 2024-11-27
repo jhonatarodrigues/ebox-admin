@@ -33,6 +33,7 @@ export const AddProducts = () => {
 
 
   useEffect(() => {
+
     if(state?.id) {
       getProduct(state.id).then((response) => {
         setProduct(response);
@@ -107,7 +108,7 @@ export const AddProducts = () => {
             />
 
             {product?.file ? (
-              <div className='contentImage' style={{backgroundImage: `url("http://localhost:3000/uploads/${product?.file}")`}}>
+              <div className='contentImage' style={{backgroundImage: `url("${process.env.REACT_APP_API_BASE_URL}uploads/${product?.file}")`}}>
                 <button onClick={() => setProduct({...product, file: ''})}>X</button>
               </div>
               ) : ( 
